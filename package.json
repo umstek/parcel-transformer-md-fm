@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@parcel/config-default": "^2.16.4",
-    "oxfmt": "^0.63.0",
+    "oxfmt": "^0.75.0",
     "oxlint": "^1.78.0",
     "parcel": "^2.16.4",
     "vitest": "^4.1.10"
