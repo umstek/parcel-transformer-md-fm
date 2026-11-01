@@ -27,7 +27,7 @@
     "node": ">=20",
     "parcel": "^2.0.0"
   },
-  "packageManager": "pnpm@11.18.0",
+  "packageManager": "pnpm@12.16.1",
   "scripts": {
     "ci-gpr": "node scripts/prepare-gpr.js",
     "format": "oxfmt .",
