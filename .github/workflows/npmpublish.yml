@@ -4,6 +4,7 @@ on:
   release:
     types:
       - created
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -26,6 +27,9 @@ jobs:
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -36,13 +40,14 @@ jobs:
           node-version: 24
           registry-url: https://registry.npmjs.org/
       - run: pnpm install --frozen-lockfile
-      - run: pnpm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.npm_token }}
+      - run: pnpm publish --no-git-checks
 
   publish-gpr:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v7
         with:
@@ -57,4 +62,4 @@ jobs:
       - run: pnpm run ci-gpr
       - run: pnpm publish --no-git-checks
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.gpr_token }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
